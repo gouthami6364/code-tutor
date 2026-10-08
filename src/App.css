@@ -1,0 +1,305 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: Inter, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top left, #3b82f620, transparent 35%),
+    radial-gradient(circle at bottom right, #22c55e20, transparent 35%),
+    linear-gradient(135deg, #070b17, #111827, #1e1b4b);
+  color: white;
+}
+
+/* =========================
+   PAGE
+========================= */
+
+.app-container {
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 28px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #0f172a, #172554, #312e81);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, .35),
+    inset 0 0 1px rgba(255, 255, 255, .2);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  background: #38bdf840;
+  border-radius: 50%;
+  filter: blur(90px);
+  top: -120px;
+  right: -100px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  letter-spacing: -2px;
+  background: linear-gradient(90deg, #67e8f9, #38bdf8, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  margin-top: 8px;
+  color: #cbd5e1;
+}
+
+.hero-badge {
+  margin-top: 18px;
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #ffffff10;
+  border: 1px solid #ffffff25;
+  backdrop-filter: blur(12px);
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+.app {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 20px;
+}
+
+/* =========================
+   EDITOR
+========================= */
+
+.editor-pane {
+  position: relative;
+  padding-top: 42px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #0b1220, #132238, #1a2f4d);
+  border: 1px solid #ffffff10;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, .35);
+  animation: glow 4s infinite alternate;
+}
+
+/* fake VS Code top bar — decorative only, clicks pass through to Monaco */
+.editor-pane::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 42px;
+  background: rgba(255, 255, 255, .05);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.editor-pane::after {
+  content: "🔴 🟡 🟢";
+  position: absolute;
+  top: 10px;
+  left: 18px;
+  font-size: 14px;
+  z-index: 11;
+  pointer-events: none;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 25px rgba(56, 189, 248, .18); }
+  to   { box-shadow: 0 0 45px rgba(139, 92, 246, .35); }
+}
+
+/* =========================
+   PANEL
+========================= */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  padding: 24px;
+  background: rgba(15, 23, 42, .92);
+  backdrop-filter: blur(18px);
+  border: 1px solid #ffffff10;
+}
+
+/* =========================
+   ERROR CARD
+========================= */
+
+.error-card {
+  background: linear-gradient(145deg, #3b1010, #5b1b1b);
+  border: 1px solid #ff6b6b50;
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.error-card h2 {
+  color: #ff8a8a;
+  margin-bottom: 10px;
+}
+
+.error-card p {
+  color: #ffdede;
+}
+
+.concept-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #ffb199;
+  margin-bottom: 4px;
+}
+
+.repeat-note {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #ffffff10;
+  font-size: 0.9rem;
+}
+
+/* =========================
+   SUCCESS CARD
+========================= */
+
+.success-card {
+  text-align: center;
+  padding: 30px;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #0d3b2e, #14532d);
+  border: 1px solid #4ade8035;
+  box-shadow: 0 0 35px rgba(74, 222, 128, .2);
+}
+
+.success-icon {
+  font-size: 58px;
+  animation: bounce 1.3s infinite;
+}
+
+.success-card h2 {
+  margin: 15px 0;
+  color: #4ade80;
+  font-size: 1.6rem;
+}
+
+.success-card p {
+  color: #d1fae5;
+}
+
+.success-badge {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: #4ade8015;
+  border: 1px solid #4ade8040;
+  color: #86efac;
+  font-weight: 700;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.panel button {
+  margin-top: auto;
+  border: none;
+  border-radius: 14px;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  transition: .25s;
+}
+
+.panel button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(59, 130, 246, .35);
+}
+
+.panel button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.hint-ladder {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.hint-ladder button {
+  margin-top: 0;
+  flex: 1;
+  padding: 8px;
+  font-size: 0.85rem;
+}
+
+.hint-loading {
+  margin-top: 12px;
+  font-style: italic;
+  color: #cbd5e1;
+}
+
+.hint-text {
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #ffffff10;
+  border: 1px solid #ffffff15;
+  white-space: pre-wrap;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 760px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-rows: 60% 40%;
+  }
+}
