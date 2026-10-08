@@ -9,7 +9,7 @@ const starterCode = `function calculateTotal(price, tax {
 `;
 
 const DEBOUNCE_MS = 300;
-const HINT_API_URL = "http://localhost:3001/api/hint";
+const HINT_API_URL = "https://code-tutor-vwf9.onrender.com/api/hint";
 const STORAGE_KEY = "code-tutor-concept-counts";
 
 function loadCounts() {
