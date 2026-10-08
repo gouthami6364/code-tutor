@@ -78,5 +78,8 @@ Keep your answer under 80 words.`;
     res.status(500).json({ error: "Server error" });
   }
 });
+app.get("/", (req, res) => {
+  res.send("Code Tutor backend is running.");
+});
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
