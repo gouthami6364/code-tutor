@@ -29,9 +29,18 @@ function App() {
   const [fileName, setFileName] = useState("main.js");
   const [code, setCode] = useState(starterCode);
   const [buildState, setBuildState] = useState("Checking...");
+  const [theme, setTheme] = useState(() => localStorage.getItem("code-tutor-theme") || "dark");
   const editorRef = useRef(null);
   const monacoRef = useRef(null);
   const timerRef = useRef(null);
+
+  useEffect(() => {
+    localStorage.setItem("code-tutor-theme", theme);
+    document.documentElement.dataset.theme = theme;
+    monacoRef.current?.editor?.setTheme(
+      theme === "light" ? "code-tutor-light" : "code-tutor-dark"
+    );
+  }, [theme]);
 
   const check = useCallback((value) => {
     const found = findSyntaxError(value);
@@ -76,6 +85,28 @@ function App() {
     monaco.languages.typescript.javascriptDefaults.setDiagnosticsOptions({
       noSyntaxValidation: true,
       noSemanticValidation: true,
+    });
+
+    monaco.editor.defineTheme("code-tutor-light", {
+      base: "vs",
+      inherit: true,
+      rules: [
+        { token: "keyword", foreground: "7C3AED" },
+        { token: "string", foreground: "0891B2" },
+        { token: "number", foreground: "B45309" },
+        { token: "comment", foreground: "64748B" },
+      ],
+      colors: {
+        "editor.background": "#F8FAFC",
+        "editor.foreground": "#172033",
+        "editorLineNumber.foreground": "#94A3B8",
+        "editorLineNumber.activeForeground": "#475569",
+        "editorCursor.foreground": "#2563EB",
+        "editor.selectionBackground": "#BFDBFE",
+        "editor.lineHighlightBackground": "#EEF4FF",
+        "editorIndentGuide.background1": "#E2E8F0",
+        "editorIndentGuide.activeBackground1": "#CBD5E1",
+      },
     });
 
     monaco.editor.defineTheme("code-tutor-dark", {
@@ -223,7 +254,15 @@ console.log(total);`;
             <span>JavaScript</span>
             <span className="chevron">⌄</span>
           </div>
-          <button className="icon-button" aria-label="Theme">☾</button>
+          <button
+            className="theme-toggle"
+            onClick={() => setTheme((current) => current === "dark" ? "light" : "dark")}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+            title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+          >
+            <span className={theme === "light" ? "active" : ""}>☀</span>
+            <span className={theme === "dark" ? "active" : ""}>☾</span>
+          </button>
           <button className="icon-button" aria-label="Settings">⚙</button>
           <span className="online"><i /> Online</span>
         </div>
@@ -315,7 +354,7 @@ console.log(total);`;
                 height="100%"
                 defaultLanguage="javascript"
                 defaultValue={starterCode}
-                theme="code-tutor-dark"
+                theme={theme === "light" ? "code-tutor-light" : "code-tutor-dark"}
                 beforeMount={handleBeforeMount}
                 onMount={handleMount}
                 onChange={handleChange}
