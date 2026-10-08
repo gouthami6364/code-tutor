@@ -189,13 +189,13 @@ function App() {
   };
 
   const loadExample = () => {
-    const example = `function calculateTotal(price, tax) {
-  console.log("Calculating...");
-  return price + tax;
+   const example = `function sayHello(name) {
+  console.log("Greeting...");
+  return "Hello, " + name + "!";
 }
 
-const total = calculateTotal(100, 18);
-console.log(total);`;
+const message = sayHello("Alice");
+console.log(message);`;
 
     setFileName("example.js");
     setCode(example);
@@ -252,7 +252,7 @@ console.log(total);`;
           <div className="language-select">
             <span className="js-badge">JS</span>
             <span>JavaScript</span>
-            <span className="chevron">⌄</span>
+           
           </div>
           <button
             className="theme-toggle"
@@ -263,7 +263,7 @@ console.log(total);`;
             <span className={theme === "light" ? "active" : ""}>☀</span>
             <span className={theme === "dark" ? "active" : ""}>☾</span>
           </button>
-          <button className="icon-button" aria-label="Settings">⚙</button>
+          
           <span className="online"><i /> Online</span>
         </div>
       </header>
