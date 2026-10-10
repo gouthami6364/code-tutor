@@ -189,7 +189,7 @@ function App() {
   };
 
   const loadExample = () => {
-   const example = `function sayHello(name) {
+    const example = `function sayHello(name) {
   console.log("Greeting...");
   return "Hello, " + name + "!";
 }
@@ -252,18 +252,17 @@ console.log(message);`;
           <div className="language-select">
             <span className="js-badge">JS</span>
             <span>JavaScript</span>
-           
           </div>
           <button
             className="theme-toggle"
-            onClick={() => setTheme((current) => current === "dark" ? "light" : "dark")}
+            onClick={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
             title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
           >
             <span className={theme === "light" ? "active" : ""}>☀</span>
             <span className={theme === "dark" ? "active" : ""}>☾</span>
           </button>
-          
+
           <span className="online"><i /> Online</span>
         </div>
       </header>
@@ -380,14 +379,11 @@ console.log(message);`;
                   <div className="error-symbol">!</div>
 
                   <div className="error-title">
-                    <h2>Unexpected token</h2>
+                    <h2>{error.conceptLabel}</h2>
                     <p>Line {error.line}, Column {error.column}</p>
                   </div>
 
                   <span className="status-pill">Error</span>
-                  <button className="close-error" onClick={() => setError(null)} aria-label="Close">
-                    ×
-                  </button>
                 </div>
 
                 <div className="explanation">
@@ -462,7 +458,7 @@ console.log(message);`;
         </div>
 
         <div className="status-right">
-          <span>〉_</span>
+          <span>〉_</span>
           <em>Better code. Brighter future.</em>
         </div>
       </footer>

@@ -109,37 +109,7 @@ html[data-theme="light"] .language-select {
   color: #334155;
 }
 
-html[data-theme="light"] 
-.theme-toggle {
-  height: 36px;
-  padding: 3px;
-  display: inline-flex;
-  align-items: center;
-  gap: 2px;
-  border: 1px solid rgba(102, 142, 194, 0.25);
-  border-radius: 999px;
-  background: #0b1930;
-  color: #7890af;
-  cursor: pointer;
-}
-
-.theme-toggle span {
-  width: 30px;
-  height: 28px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  font-size: 14px;
-  transition: 0.2s ease;
-}
-
-.theme-toggle span.active {
-  color: #ffffff;
-  background: #17365f;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.icon-button {
+html[data-theme="light"] .icon-button {
   color: #52657e;
 }
 
@@ -220,8 +190,48 @@ html[data-theme="light"] .tool-button {
   border-color: #cad7e6;
 }
 
+/* FIX: Run button needs its own background in light mode — otherwise it
+   inherits the plain .tool-button white background above and becomes
+   invisible white-on-white text. */
 html[data-theme="light"] .tool-button.run {
+  background: linear-gradient(135deg, #3d8cff, #4168e9);
   color: #ffffff;
+  border-color: transparent;
+}
+
+/* FIX: hover states were only ever defined for dark mode (light text on
+   dark backgrounds), so hovering in light mode showed invisible/odd combos. */
+html[data-theme="light"] .icon-button:hover {
+  background: rgba(37, 99, 235, 0.08);
+  color: #1e3a5f;
+}
+
+html[data-theme="light"] .tool-button:hover {
+  background: #eef4ff;
+  color: #1e3a5f;
+  border-color: rgba(37, 99, 235, 0.4);
+}
+
+html[data-theme="light"] .tool-button.run:hover {
+  filter: brightness(1.07);
+}
+
+html[data-theme="light"] .hint-ladder button:hover:not(:disabled) {
+  background: #eef4ff;
+  color: #1e3a5f;
+  border-color: rgba(37, 99, 235, 0.4);
+}
+
+html[data-theme="light"] .go-error:hover {
+  background: #eef4ff;
+  color: #1e3a5f;
+  border-color: rgba(37, 99, 235, 0.4);
+}
+
+html[data-theme="light"] .quick-buttons button:hover:not(:disabled) {
+  background: #eef4ff;
+  color: #1e3a5f;
+  border-color: rgba(37, 99, 235, 0.4);
 }
 
 html[data-theme="light"] .inspector {
@@ -272,6 +282,38 @@ html[data-theme="light"] .go-error {
   background: #f8fbff;
   color: #40536c;
   border-color: #cbd8e8;
+}
+
+/* FIX: success state had no light-theme override at all, so it stayed
+   dark-navy even in light mode. */
+html[data-theme="light"] .success-state {
+  background:
+    radial-gradient(circle at 50% 25%, rgba(22, 163, 74, 0.08), transparent 30%),
+    linear-gradient(180deg, #f7fdf9, #ffffff);
+}
+
+html[data-theme="light"] .success-icon {
+  border-color: rgba(22, 163, 74, 0.4);
+  background: rgba(22, 163, 74, 0.08);
+  color: #168a57;
+}
+
+html[data-theme="light"] .success-label {
+  color: #15803d;
+}
+
+html[data-theme="light"] .success-state h2 {
+  color: #14532d;
+}
+
+html[data-theme="light"] .success-state p {
+  color: #4b6358;
+}
+
+html[data-theme="light"] .success-badge {
+  border-color: rgba(22, 163, 74, 0.3);
+  background: rgba(22, 163, 74, 0.08);
+  color: #15803d;
 }
 
 html[data-theme="light"] .statusbar {
@@ -386,7 +428,6 @@ html[data-theme="light"] .status-right {
   height: 23px;
   font-size: 10px;
 }
-
 
 .theme-toggle {
   height: 36px;
@@ -853,17 +894,6 @@ html[data-theme="light"] .status-right {
   background: rgba(255, 81, 96, 0.08);
   font-size: 10px;
   font-weight: 700;
-}
-
-.close-error {
-  position: absolute;
-  top: 9px;
-  right: 9px;
-  border: 0;
-  color: #98666d;
-  background: transparent;
-  cursor: pointer;
-  font-size: 19px;
 }
 
 .explanation {
