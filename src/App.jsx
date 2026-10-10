@@ -283,9 +283,7 @@ console.log(message);`;
             <div className="quick-buttons">
               <button onClick={createFile}>＋ <span>New File</span></button>
               <button onClick={loadExample}>◈ <span>View Examples</span></button>
-              <button onClick={() => getHint(2)} disabled={!error || hintLoading}>
-                ? <span>Get Help</span>
-              </button>
+             
             </div>
           </div>
         </section>
